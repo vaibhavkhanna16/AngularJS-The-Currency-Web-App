@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html ng-app='MyCurrencyApp'>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  <script src="currencyhistory.js"></script>
+  <script src="events.js"></script>
+    <title> The Currency App </title>
+</head>
+
+<body ng-controller='CurrencyController as currency' id="body">
+
+<nav class="navbar navbar-expand-lg navbar-light" id="heading">
+  <a class="navbar-brand" href="index.html"><b><i>The Currency App</i></b></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav" id="nav1">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html" id="list1"><b>Home</b> <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="currencyhistory.html" id="list2"><b>Currency History</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="currencyconverter.html" id="list3"><b>Currency Converter</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="blockchaincurrencyconverter.html" id="list4"><b>Blockchain Converter</b></a>
+      </li>
+  </ul>
+  </div>
+</nav>
+
+<br>
+
+<div>
+<p id ="text1"> Welcome to The Currency App!. You can find the values of a particular currency of any country versus the currencies of other countries and compare them. Plus you can find the price of the particular currency in BTC.
+<br> <br>
+Enter any Date after 1999 in the following format "YYYY-MM-DD" and you can get the history of the prices of the particular currency with various other currencies. </p>
+</div>
+  <br>
+
+<div id="text3">
+<div> <span> Enter Currency Date:- &nbsp; </span> <input type="text" ng-model="currency.date" placeholder="Date Format YYYY-MM-DD" class="col-3">
+<span> &nbsp; Enter Currency Name:- &nbsp; </span> <input type="text" ng-model="currency.currencyName" placeholder="Enter Currency Name eg: USD" class="col-3">
+<span> &nbsp; </span>  <button class="btn btn-dark btn-sm" ng-click="currency.getCurrency()">Find Currency Rates</button>
+</div>
+</div>
+
+<br> <br> <br> <br> <br>
+
+<div id="index" ng-if="currency.flag===true">The Value of Currency {{currency.currencyName}} in various different Currencies are :- </div>
+<br>
+
+<table class="table table-dark table-striped table -hover table-bordered" ng-if="currency.flag===true">
+<thead>
+  <tr>
+    <th id="tr"> Name of Currency </th>
+    <th id="tr"> Value of Currency </th>
+</tr>
+</thead>
+  <tbody  ng-repeat="(key,val) in currency.currencyData">
+    <tr>
+      <td id="tr">{{key}} </td>
+      <td id="tr">{{val}} </td>
+    </tr>
+  </tbody>
+</table>
+
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+            <p id="copyright"> Copyright &copy; The Currency App</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
